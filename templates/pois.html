@@ -1,0 +1,151 @@
+{% extends "template.html" %}
+{% block content %}
+		
+	<div id="menu">
+		
+	    <div class="control-cont">
+			<div class="div-lbl-sp">{{ location }}</div>
+			<input type="text" value="Vidhana Soudha" style="width: 254px; margin-right: 10px;padding:5px;border:1px solid #ddd;color:#555" id="search" placeholder="Address, busines or location" autocomplete="on" autofocus="" onkeypress="if (event.which == 13 || event.keyCode == 13)
+                                    get_geocode_result()"/>
+            <button onclick="get_geocode_result()" style="margin-top:10px">Navigate</button>
+                   
+             <div style="border-top: 1px solid #e9e9e9;padding:10px; margin-top: 12px" id="result"></div>
+				
+             <div class="div-label">Enter Keyword</div>
+                <input type="text" class="input-cls" id="keyword" placeholder="keyword" autocomplete="off" autofocus="" value="coffee" onkeydown="if (event.which == 13 || event.keyCode == 13)
+                                   $('#search').trigger('click'); "/>
+            <div id="lan"></div>        
+            <div id="lat"></div>
+
+			 <button id="searchit" onclick="get_near_by_result(document.getElementById('destination').value.split(',')[0], document.getElementById('destination').value.split(',')[1], 'searchbykeyword')">Search Nearby</button><br><br>
+
+	        <div class="div-lbl-sp">Start Points</div>
+
+	        <input type="text" class="textbox" id="start" value="12.9216,77.6691" placeholder="e.g:28.612960,77.229455" autocomplete="on" /><br/>
+	        
+	        <div class="div-lbl-sp">Via Points (Optional) </div>
+	        <input type="text" class="textbox"  id="via" value="" placeholder="e.g:28.570841,77.325929" autocomplete="on" /><br>
+	            <div class="div-lbl-sp">Destination Points</div>
+
+	            <div>
+	                <input type="text" class="textbox"  id="destination" value="12.9794,77.5910" placeholder="e.g:27.157015,77.991600" autocomplete="on" />
+	            </div>
+
+	            <div class="api-param-list">
+	                <div style="float:left">Route Type</div>
+	                <div style="float:right">
+	                    <select id="rtype" style="width:165px">
+	                        <option value="0">Quickest</option>
+	                        <option value="1">Shortest</option>
+	                    </select>
+	                </div>
+	            </div>
+	            
+	            <div class="api-param-list">
+	                <div style="float:left">Vehicle Type</div>
+	                <div style="float:right">
+	                    <select id="vtype" style="width:165px">
+	                        <option value="1" selected="">Taxi</option>
+	                        <option value="0">Passenger</option>
+	                    </select>
+	                </div>
+	            </div>
+				
+				 <div class="api-param-list">
+                        <div style="float:left">Avoids</div>
+                        <div style="float:right">
+                            <select id="avoids" style="width:165px">
+                                <option value="1" selected="">Toll Roads</option>
+                                <option value="2">Ferries</option>
+                                <option value="4" >Unpaved Roads</option>
+                                <option value="8">Highways</option>
+                            </select>
+                        </div>
+                    </div>
+
+	            <div class="api-param-list">
+	                <div style="float:left">Advices</div>
+	                <div style="float:right">
+	                    <select id="advices_o" style="width:165px">
+	                        <option value="1" selected="">With Advices</option>
+	                        <option value="0">Without Advices</option>
+	                    </select>
+	                </div>
+	            </div>
+
+	            <div class="api-param-list">
+	                <div style="float:left">With Alternatives Route</div>
+	                <div style="float:right">
+	                    <select id="alternatives_o" style="width:96px">
+	                        <option value="true" >True</option>
+	                        <option value="false" selected="">False</option>
+	                    </select>
+	                </div>
+	            </div>
+	               
+	              <div style="padding:10px 0 15px 0;font-size:13px;width:250px;"><div style="float:left">Select Region</div>
+					<div style="float:right">
+					<select id="region" style="width:165px">
+						<option value="ind">India(IND)</option>
+						<option value="bgd">Bangladesh(BGD)</option>
+						<option value="btn">Bhutan(BTN)</option>
+						<option value="npl">Nepal(NPL)</option>
+						<option value="lka">Sri Lanka(SLA)</option>
+						
+					</select>
+				</div></div>
+				
+				<div style="padding:10px 0 15px 0;font-size:13px;"><div><b>Avoids</b></div>
+					<table>
+						<tr>
+							<td><input style="padding:10px 0 1px 0;font-size:12px;" type="checkbox" class="avoidsPt"></td>
+							<td>Toll roads</td>
+							<td><input style="padding:10px 0 1px 0;font-size:12px;" type="checkbox" class="avoidsPt"></td>
+							<td>Ferries</td>
+						</tr>
+						<tr>
+							<td><input style="padding:10px 0 1px 0;font-size:12px;" type="checkbox" class="avoidsPt"></td>
+							<td>Unpaved roads</td>
+							<td><input style="padding:10px 0 1px 0;font-size:12px;" type="checkbox" class="avoidsPt"></td>
+							<td>Highways & ferries</td>
+						</tr>
+					</table>
+				</div>
+
+	            <div style="margin:20px 0 5px 0px;">
+	                <button onclick="get_route_result()" >Get Route</button>
+	            </div><br>
+	                <div id="alternate">
+	                    <label>
+	                        <input type="checkbox" id="alternatives"  onclick="alternative_route()" style="float: left" />
+	                        <div id="sh-aval-rt">Show Available Alternative Route</div>
+	                    </label>
+	                </div>
+	                </div>
+	                <div id="info" ></div>
+	                <div class="advice-div" id="direct_advices"></div>
+	                <div class="advice-div" style="display:none" id="alternatives_advices"></div>			
+	                </div>
+	                <div id="map-container"></div>
+	                <div id="map-container1"></div>
+						
+						<script>
+							$.urlParam = function(name){
+								var results = new RegExp('[\?&#]' + name + '[^&#]*').exec(window.location.href);
+								if(results==null){
+									return null;
+								}
+								return decodeURI(results[1]) || 0;
+							}
+							var stri = $.urlParam('placeval');
+							var lat = parseFloat(stri.split(',')[0]);
+							var long = parseFloat(stri.split(',')[1]);
+							console.log(lat)
+							console.log(long)
+						</script>
+					<script type="text/javascript" src="{{ url_for('static', filename='js/geocoding.js') }}"></script>
+					<script type="text/javascript" src="{{ url_for('static', filename='js/nearby.js') }}"></script>
+	                <script type="text/javascript" src="{{ url_for('static', filename='js/routing.js') }}"></script>
+	                 
+
+{% endblock content %}

@@ -1,0 +1,79 @@
+
+    /*map css **/
+    body,html {
+        height: 100%;font-family:Verdana,sans-serif, Arial;color:#555;margin: 0;/*EOL*/font-size:12px; padding: 0; background:#fafafa
+    }
+    #map-container {
+        position: absolute;left: 312px; top: 46px;right: 2px; bottom: 2px;border: 1px solid #cccccc; 
+    }
+    #menu {
+        position: absolute;left: 2px; top: 46px;width: 306px;bottom: 2px;border: 1px solid #cccccc;background-color: #FAFAFA;overflow-x:hidden;overflow-y: auto;
+    }
+    li{
+        padding:0 5px 10px 0;cursor:pointer;color: #333;
+    }
+    li:hover{
+        color:#00adff;cursor:pointer;text-decoration:underline
+    }
+    .map_marker{
+        position:relative;width:34px;height:48px
+    }
+    /*marker text span css*/
+    .my-div-span{
+        position: absolute;left:1.5em;right: 1em;top:1.4em;bottom:2.5em;font-size:9px;font-weight:bold;width:1px;color:black;
+    }
+    .top-div{
+        border-bottom: 1px solid #e9e9e9;padding:10px 12px;background:#fff;
+    }
+    .top-div-span1{
+        font-size: 20px;
+    }
+    .top-div-span2{
+        font-size:16px;color:#777
+    }
+    .btn-div{
+        padding: 16px 12px 6px 38px;
+    }
+    .msg-cont{
+        padding:6px 12px 1px; border-bottom:1px solid #e9e9e9;
+    }
+    .msg-list{
+        line-height: 20px; font-size: 12px; color: #555;
+    }
+    .event-header{
+        padding:14px 12px 6px 38px;color: #666;
+    }
+    #event-log{
+        padding:6px 12px 6px 38px;color: #777; font-size: 12px; line-height: 22px;
+    }
+    .input-cls{
+        width: 254px; margin-right: 10px;padding:5px;border:1px solid #ddd;color:#555;
+    }
+    .div-label{
+        padding: 5px 0;font-size:13px;color:#222;
+    }
+    .menu-sub{
+        padding: 0 12px 0 12px;
+    }
+    #result{
+        border-top: 1px solid #e9e9e9;
+        padding:10px;
+        margin-top: 12px ;
+    }
+    #poidetail{
+        border-bottom: 1px solid #e9e9e9;
+    }
+    .popup-tab{
+        width:350px;padding:10px;font-size: 10px;font-type: bold;
+    }
+	.btnStyle {
+		cursor:pointer;
+		border-radius: 15px;
+	background-color: #4D90FE; 
+	border: 1px solid #3079ED; 
+	color: #FFFFFF;
+	 padding: 4px;
+	 margin-top: -10px;
+	 margin-bottom: 4px;
+	 width:28%
+	}

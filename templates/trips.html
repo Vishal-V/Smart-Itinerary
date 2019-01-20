@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+{% block content %}
+	<script type="text/javascript">
+
+		var src = 'https://apis.mapmyindia.com/advancedmaps/v1/q3i84njiznct1jvuk5aj1l76s1m8unsw/map_load?v1.1';
+		var API = 'q3i84njiznct1jvuk5aj1l76s1m8unsw';
+		var client_secret = 'ZNivbekBmQKq7loD0W8eC5YXMo3grtf_-TBkc5lEXUzBUt7P239_YXYrnmM43lHe';
+		var client_id = 'JOZhi4k-wfDfq8zeWj6scHLvXbCMX2395QtQx5NFZGtQROF6h8xXYg==';
+		var url = 'https://atlas.mapmyindia.com/api/places/nearby/json?keywords=coffee;beer&refLocation=12.9509,77.6445'
+	</script>
+
+	<style>
+        html, body, #map {	margin: 0;	padding: 0;width: 100%;height: 100%;}
+                    
+    </style>
+
+    <div id="map"></div>
+
+    https://apis.mapmyindia.com/intouch/v1/<licence_key>/getLiveData
+
+    <script type="text/javascript">
+    	var map=new MapmyIndia.Map("map",{ center:[12.9509,77.6445], zoomControl: true, hybrid:true, search:true, location:true}); 
+ 	    L.marker([12.9509,77.6445]).addTo(map);
+    </script>
+{% endblock content %}

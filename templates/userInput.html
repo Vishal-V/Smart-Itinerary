@@ -1,0 +1,87 @@
+{% extends "template.html" %}
+{% block content %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <div class="row" style="padding-left: 23%; padding-right: 23%" >
+    <div class="col s12 m6" style="padding-top: 20%;" >
+      <div class="card blue-grey darken-1" style="box-shadow: -5px 5px 10px #1b1e21, 5px -5px 10px #1b1e21">
+        <div class="card-content white-text">
+          <div class="input-field col s12" style="width: 30%; height: 300px;">
+              <div style="padding: 5px; height: 33%;">
+              <label style="width: 75%"> Cafe <br>
+                  <select id="cafe">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="1">Tea</option>
+                      <option value="2">Coffee</option>
+                  </select>
+              </label>
+              </div>
+
+              <div style="padding: 5px; height: 33%;">
+              <label> Cuisine <br>
+                  <select id="cuisine">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="1">North Indian</option>
+                      <option value="2">Continental</option>
+                  </select>
+              </label>
+              </div>
+
+              <div style="padding: 5px; height: 33%;">
+              <label> Touring <br>
+                  <select id="touring">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="1">Art</option>
+                      <option value="2">Dance</option>
+                      <option value="3">Clothing</option>
+                      <option value="4">Science</option>
+                  </select>
+              </label>
+              </div>
+            </div>
+
+            <div style="align-self: stretch">
+                <button style="align-self: end" onclick="submit()">Submit
+                    <script>
+                        function submit(){
+                            var tr = "";
+                            switch(document.getElementById("touring").value){
+                                case 1:
+                                    tr = "Art";
+                                    break;
+                                case 2:
+                                    tr = "Dance";
+                                    break;
+                                case 3:
+                                    tr = "Clothing";
+                                    break;
+                                default: tr = "Science";
+                            }
+                            $.ajax({
+                                url: 'http://127.0.0.1:5000/userinput',
+                                data: {
+                                    "cafe": document.getElementById("cafe").value,
+                                    "cuisine": document.getElementById("cuisine").value,
+                                    "touring": tr
+                                },
+                                method: 'GET',
+                                success: function(result) {
+                                  var mapvalx = result.mapval;
+                                  
+                                  var placeval = result.placeval;
+                                  var timeval = result.timeval;
+                                  console.log(mapvalx);
+                                  window.location.replace("http://127.0.0.1:5000/POIs?mapval="+mapvalx);
+                                }
+                            });
+                        }
+                        // return;
+                    </script>
+                </button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

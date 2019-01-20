@@ -1,0 +1,51 @@
+{% extends "template.html" %}
+{% block content %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+        xmlns="http://www.w3.org/1999/html"></script>
+    <script type="text/css">
+            .inline {
+                display: inline-block;
+            }
+    </script>
+    <div class="row" style="padding-left: 23%; padding-right: 23%" >
+    <div class="col s12 m6" style="padding-top: 20%;" >
+      <div class="card blue-grey darken-1"
+           style="box-shadow: -5px 5px 10px #1b1e21, 5px -5px 10px #1b1e21;position: fixed;
+                top: 0;
+                bottom: 0;
+                margin: 200px 200px;
+                min-height: 40%;">
+        <div class="card-content white-text">
+          <div class="input-field col s12" style="width: 500px; height: 300px;">
+              <h1>When are you free today?</h1>
+              <form>
+              <div class="form-row align-items-center">
+              <div class="row ml-2">
+                  <div class="col-sm-6 pr-5">
+                    <h4 >From</h4>
+                      <input type="time">
+                  </div>
+                  <div class="col-sm-6 pl-5">
+                      <h4>Till</h4>
+                      <input type="time">
+                  </div>
+              </div>
+              </div>
+              </form>
+            <div>
+                <center><button class="mt-5" >Submit</button></center>
+            </div>
+
+              <div m-2>
+                  <ul>
+                      <li>
+
+                      </li>
+                  </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
